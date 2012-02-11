@@ -26,9 +26,14 @@ var methods = {
 	},
 
 	all: function (success) {
-		success(_(model.toJSON()).map(function (member) {
-			return new Member(member);
-		}));
+		success(_(model.toJSON()).chain()
+			.sortBy(function (member) {
+				return member.rank;
+			})
+			.map(function (member) {
+				return new Member(member);
+			})
+			.value());
 	},
 
 	actions: function (success) {
