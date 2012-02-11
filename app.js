@@ -11,14 +11,17 @@ var methods = {
 	},
 
 	create: function(member, success) {
+		model.add(member);
 		success();
 	},
 
 	update: function (member, success) {
+		model.get(member.id).set(member);
 		success();
 	},
 
 	remove: function (id, success) {
+		model.remove(model.get(id));
 		success();
 	},
 
