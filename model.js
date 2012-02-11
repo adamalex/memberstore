@@ -17,7 +17,15 @@ var sampleData = [
 	{ id: 14, first: 'Tim', last: 'Kendall', rank: 3 }
 ];
 
-var MemberModel = Backbone.Model.extend({});
+var MemberModel = Backbone.Model.extend({
+	promote: function () {
+		this.set({ rank: this.get('rank') - 1 });
+	},
+
+	demote: function () {
+		this.set({ rank: this.get('rank') + 1 });
+	}
+});
 
 var MemberCollection = Backbone.Collection.extend({
 	model: MemberModel,

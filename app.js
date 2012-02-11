@@ -37,10 +37,12 @@ var methods = {
 	},
 
 	promote: function (id, success) {
+		model.get(id).promote();
 		success();
 	},
 
 	demote: function (id, success) {
+		model.get(id).demote();
 		success();
 	},
 
