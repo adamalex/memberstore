@@ -1,10 +1,17 @@
 var thrift = require('thrift');
 var _ = require('underscore');
 
+//
+// Pull in example Backbone model and generated Thrift "classes"
+//
 var model = require('./model').loadSampleData();
 var MemberStore = require('./gen-nodejs/MemberStore');
 var Member = require('./gen-nodejs/member_types').Member;
 
+//
+// Service logic implementation for all methods
+// supported by service.  Delegates to example Backbone model
+//
 var methods = {
 	get: function(id, success) {
 		success(new Member(model.get(id).toJSON()));
@@ -36,6 +43,8 @@ var methods = {
 			.value());
 	},
 
+	// TODO not yet used and should move into more general 'meta' method providing
+	// instance actions, collection actions, and all other service metadata
 	actions: function (success) {
 		var actions = ['promote', 'demote', 'reset'];
 		success(actions);
@@ -57,5 +66,6 @@ var methods = {
 	}
 };
 
+// Start
 thrift.createServer(MemberStore, methods /*, {transport: thrift.transport.TBufferedTransport} */).listen(9701);
 console.log("Member Store listening on port %d", 9701);

@@ -1,5 +1,9 @@
 var Backbone = require('backbone');
 
+//
+// Basic Backbone model, collection, and sample data
+// Provides all underlying model logic for this example
+//
 var sampleData = [
 	{ id: 1, first: 'Ian', last: 'Michaels', rank: 1 },
 	{ id: 2, first: 'Dale', last: 'McConnor', rank: 2 },
